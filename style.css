@@ -47,6 +47,10 @@ body::before {
     bottom: 0;
 }
 
+.container__imagem-robo {
+    width: 100%;
+}
+
 .container__informacoes {
     flex: 1;
     padding: 20px;
