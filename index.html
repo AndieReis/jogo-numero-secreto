@@ -17,25 +17,23 @@
     <div class="container">
         <div class="container__conteudo">
             <div class="container__informacoes">
-                <!-- <img src="./img/trophy-pink.png" alt="ícone de um troféu" />
+                <img id="trophy" src="./img/trophy-pink.png" alt="ícone de um troféu" disable />
+
                 <div class="container__texto">
-                    <h1>Você <span class="container__texto-rosa">acertou!</span></h1>
-                    <h2>Você descobriu o número secreto!</h2>
-                </div> -->
-                <div class="container__texto">
-                    <h1></h1>
-                    <p class="texto__paragrafo"></p>
+                    <h1 id="texto__titulo"></h1>
+                    <p id="texto__paragrafo" class="texto__paragrafo"></p>
                 </div>
                 <input type="number" min="1" max="10" class="container__input">
                 <div class="chute container__botoes">
                     <button onclick="verificarChute()" class="container__botao">Chutar</button>
-                    <button onclick="" id="reiniciar" class="container__botao" disabled>Novo jogo</button>
+                    <button onclick="reiniciarJogo()" id="reiniciar" class="container__botao" disabled>Novo
+                        jogo</button>
                 </div>
             </div>
             <img src="./img/girl.png" alt="robô menina olhando para a esquerda" class="container__imagem-robo" />
         </div>
     </div>
-    <!-- <script src="app.js" defer></script> -->
+    <script src="app.js" defer></script>
 </body>
 
 </html>

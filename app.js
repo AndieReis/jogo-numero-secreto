@@ -1,28 +1,57 @@
-alert("Sejam bem vindos ao Jogo do Número Secreto!");
-
-
 let numeroMaximo = 100;
-let numeroSecreto = parseInt(Math.random() * numeroMaximo + 1);
-console.log(numeroSecreto);
-let chute
+let numeroSecreto = gerarNumeroSecreto();
 let tentativas = 1;
+let trofeu = document.getElementById("trophy");
 
-while (chute != numeroSecreto) {
-    chute = prompt(`Escolha um número de 1 a ${numeroMaximo}: `);
-
-    if (chute == numeroSecreto) {
-        break;
-    } else {
-        if (chute < numeroSecreto) {
-            alert(`Você errou, o número secreto é maior que ${chute} .`);
-        } else {
-            alert(`Você errou, o número secreto é menor que ${chute} .`);
-        }
-    }
-    tentativas++;
+function exibirTextoNaTela(tag, texto) {
+    let campo = document.querySelector(tag);
+    campo.innerHTML = texto;
 }
 
-let palavraTentativa = tentativas > 1 ? "tentativas" : "tentativa";
-alert(`Você acertou! O número secreto ${numeroSecreto} com ${tentativas} ${palavraTentativa} .`);
+function exibirMensagemInicial() {
+    exibirTextoNaTela("h1", "Jogo do Número Secreto");
+    exibirTextoNaTela("p", `Escolha um número entre 1 e ${numeroMaximo}: `);
+}
+exibirMensagemInicial();
 
+function gerarNumeroSecreto() {
+    return parseInt(Math.random() * numeroMaximo + 1);
+}
+console.log(numeroSecreto);
 
+function verificarChute() {
+    let chute = document.querySelector('input').value;
+
+    if (chute == numeroSecreto) {
+        let palavraTentativa = tentativas > 1 ? "tentativas" : "tentativa";
+        exibirTextoNaTela("h1", "Você acertou!");
+        exibirTextoNaTela("p", `Você descobriu o número secreto com ${tentativas}  ${palavraTentativa} !`);
+        trofeu.style.display = "block";
+        document.getElementById('reiniciar').removeAttribute("disabled");
+
+    } else {
+        if (chute < numeroSecreto) {
+            exibirTextoNaTela("p", `Você errou, o número secreto é maior que ${chute} .`);
+
+        } else {
+            exibirTextoNaTela("p", `Você errou, o número secreto é menor que ${chute} .`);
+        }
+
+    }
+    tentativas++;
+    limparCampo();
+}
+
+function limparCampo() {
+    let chute = document.querySelector('input');
+    chute.value = "";
+}
+
+function reiniciarJogo() {
+    numeroSecreto = gerarNumeroSecreto();
+    limparCampo();
+    tentativas = 1;
+    exibirMensagemInicial();
+    document.getElementById('reiniciar').setAttribute("disabled", true);
+    trofeu.style.display = "none";
+}
