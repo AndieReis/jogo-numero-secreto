@@ -1,4 +1,5 @@
-let numeroMaximo = 100;
+let listaNumerosSorteados = [];
+let numeroMaximo = 10;
 let numeroSecreto = gerarNumeroSecreto();
 let tentativas = 1;
 let trofeu = document.getElementById("trophy");
@@ -15,9 +16,24 @@ function exibirMensagemInicial() {
 exibirMensagemInicial();
 
 function gerarNumeroSecreto() {
-    return parseInt(Math.random() * numeroMaximo + 1);
+    let numeroEscolhido = parseInt(Math.random() * numeroMaximo + 1);
+    let quantidadeNumerosLista = listaNumerosSorteados.length;
+
+    if (quantidadeNumerosLista == numeroMaximo) {
+        listaNumerosSorteados = [];
+    }
+
+
+
+    if (listaNumerosSorteados.includes(numeroEscolhido)) {
+        return gerarNumeroSecreto();
+    } else {
+        listaNumerosSorteados.push(numeroEscolhido);
+        console.log(listaNumerosSorteados);
+        return numeroEscolhido;
+    }
 }
-console.log(numeroSecreto);
+
 
 function verificarChute() {
     let chute = document.querySelector('input').value;
